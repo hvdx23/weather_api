@@ -10,7 +10,7 @@ openmeteo = openmeteo_requests.Client(session = retry_session)
 
 class WeatherAPI:
     
-    def __init__(self,parameters):
+    def __init__(self):
         # Initialize the Open-Meteo API client with cache and retry settings
         cache_session = requests_cache.CachedSession('.cache', expire_after=3600)
         retry_session = retry(cache_session, retries=5, backoff_factor=0.2)
@@ -18,7 +18,7 @@ class WeatherAPI:
         print("ClientAPI done")
 
 
-    def get_weather(self, latitude, longitude,para, days):
+    def get_weather(self, latitude, longitude,para,responses, days):
         url = "https://api.open-meteo.com/v1/forecast"
         params = {
             "latitude": latitude,
@@ -36,9 +36,9 @@ class WeatherAPI:
         hourly = response.Hourly()
         # Hourly response to be generated
 
-
-        hourly_temperature_2m = hourly.Variables(0).ValuesAsNumpy()
-        hourly_relative_humidity_2m = hourly.Variables(1).ValuesAsNumpy()
+        responses
+        # hourly_temperature_2m = hourly.Variables(0).ValuesAsNumpy()
+        # hourly_relative_humidity_2m = hourly.Variables(1).ValuesAsNumpy()
 
 
 # Hourly data to be generated and put here dynamically

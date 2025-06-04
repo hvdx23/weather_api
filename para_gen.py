@@ -14,8 +14,20 @@ class ParameterGen():
        return self.parameters
     
     def response(self):
-        pass
+        response_code=[]
+        for index,param in enumerate(self.parameters):
+            # print(f"index= {index}, parameter = {param}")
+            response_code.append(f"hourly_{param} = hourly.Variables({index}).ValuesAsNumpy()")
         
+        return "\n".join(response_code)
+    
+    def response_hourly_data(self):
+        response_hourly_data={}
+        for i in (self.parameters):
+            response_hourly_data[i]=f"hourly_{i}"
+        return response_hourly_data
+
+
 
     
 
